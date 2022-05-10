@@ -8,9 +8,7 @@ const Cell = () => {
   }
 
   return (
-    <button className="cell" onClick = {() => changeColor()} style = {{backgroundColor: color===0 ? "white" : "black"}}>
-      
-    </button>
+    <button className="cell" onClick = {() => changeColor()} style = {{backgroundColor: color===0 ? "white" : "black"}}/>
   )
 }
 

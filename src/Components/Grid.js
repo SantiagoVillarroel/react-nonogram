@@ -1,17 +1,25 @@
 import React from 'react'
-import Cell from './Cell';
+import Line from './Line'
 
 const Grid = () => {
-  function renderCells() {
-    
-  }
+  const rows = 4, cols = 4
+
+  /*function renderCells() {
+    let i, j
+    for(i=0; i<4; i++){
+      let row = []
+      for(j=0; j<4; j++){
+        row.push(<Cell/>)
+      }
+      rows.push(row)
+    }
+  }*/
 
   return (
     <div className="grid">
-      <Cell/>
-      <Cell/>
-      <Cell/>
-      <Cell/>
+      {[...Array(rows)].map((row, i) => 
+        <Line width={cols} />
+      )}
     </div>
   )
 }
