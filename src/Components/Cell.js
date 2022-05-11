@@ -1,10 +1,15 @@
 import React, {useState} from 'react'
 
-const Cell = () => {
+const Cell = ({rowNumber, colNumber, grid, setGrid}) => {
   const [color, setColor] = useState(0)
 
   function changeColor(){
-    setColor((color+1) % 2)
+    const newColor = (color+1) % 2
+    setColor(newColor)
+
+    let gridCopy = grid
+    gridCopy[rowNumber][colNumber] = newColor
+    setGrid(gridCopy)
   }
 
   return (

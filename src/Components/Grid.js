@@ -1,24 +1,21 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import Line from './Line'
 
 const Grid = () => {
   const rows = 4, cols = 4
+  let gridArray = new Array(rows);
+  for (let i = 0; i < rows; i++) {
+    gridArray[i] = new Array(cols).fill(0);
+  }
 
-  /*function renderCells() {
-    let i, j
-    for(i=0; i<4; i++){
-      let row = []
-      for(j=0; j<4; j++){
-        row.push(<Cell/>)
-      }
-      rows.push(row)
-    }
-  }*/
+  const [grid, setGrid] = useState(gridArray)
+
+  useEffect(() => console.log(grid), [grid])
 
   return (
     <div className="grid">
       {[...Array(rows)].map((row, i) => 
-        <Line width={cols} />
+        <Line width={cols} key={i} rowNumber={i} grid={grid} setGrid={setGrid}/>
       )}
     </div>
   )
