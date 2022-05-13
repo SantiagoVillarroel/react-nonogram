@@ -13,6 +13,11 @@ body{
   font-size: 60px;
 }
 
+.container {
+  display:grid;
+  grid-template-columns: auto auto auto;
+}
+
 .grid {
   margin-top: 200px;
   justify-content: center;
@@ -20,8 +25,8 @@ body{
 
 .line {
   display:flex;
-  justify-content: center;
-  
+  justify-content: center; 
+  /*position: relative*/
 }
 
 .cell {
@@ -37,7 +42,8 @@ body{
 .numbers-row {
   color: white;
   padding-top: 8px;
-  
+  /*position: absolute;
+  left: 80px;*/
 }
 
 .footer {

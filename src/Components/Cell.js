@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 
-const Cell = ({rowNumber, colNumber, grid, setGrid}) => {
+const Cell = ({rowNumber, colNumber, grid, gridChange, arrayChange}) => {
   const [color, setColor] = useState(0);
 
   function changeColor(){
@@ -9,7 +9,8 @@ const Cell = ({rowNumber, colNumber, grid, setGrid}) => {
 
     let gridCopy = grid;
     gridCopy[rowNumber][colNumber] = newColor;
-    setGrid(gridCopy);
+    gridChange(gridCopy);
+    arrayChange();
   };
 
   return (

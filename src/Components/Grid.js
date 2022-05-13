@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
 import Line from './Line';
 
 const Grid = () => {
@@ -10,14 +10,24 @@ const Grid = () => {
 
   const [grid, setGrid] = useState(gridArray);
 
+  const handleChange = useCallback((newGrid) => {
+    setGrid(newGrid);
+    console.log(newGrid);
+  }, []);
+
   return (
+    <>
+    <div>test</div>
     <div className="grid">
       {[...Array(rows)].map((row, i) => (
         <>
-          <Line width={cols} key={i} rowNumber={i} grid={grid} setGrid={setGrid} />   
-        </>)  
+          <Line width={cols} key={i} rowNumber={i} grid={grid} gridChange={handleChange}/> 
+        </> 
+        )  
       )}
     </div>
+    <div>test</div>
+    </>
   );
 };
 

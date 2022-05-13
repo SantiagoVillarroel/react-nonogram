@@ -1,27 +1,31 @@
 import React, { useState, useEffect, useCallback} from 'react';
 import Cell from './Cell';
 
-const Line = ({width, rowNumber, grid, setGrid}) => {
+const Line = ({width, rowNumber, grid, gridChange}) => {
 
-  const lineToNumbers = useCallback((i) => {
+  let arrayInicial = lineToNumbers(rowNumber);
+
+  const [array, setArray] = useState(arrayInicial); 
+
+  function lineToNumbers(){
     let tempArray = [], tempCounter=0, cell;
     for(let j=0; j<width; j++){
-      cell=grid[i][j];
+      cell=grid[rowNumber][j];
 
       if(cell===1){
         tempCounter++;
-        if(j===width-1 || grid[i][j+1]===0){
+        if(j===width-1 || grid[rowNumber][j+1]===0){
           tempArray.push(tempCounter);
           tempCounter=0;
         }
       }
     }
-    return tempArray
-  }, [grid, width])
+    return tempArray;
+  }
 
-  const [array, setArray] = useState(lineToNumbers(rowNumber)); 
-
-  useEffect(() => setArray(lineToNumbers(rowNumber)), [grid, rowNumber, lineToNumbers]);
+  const handleChange = useCallback((i) => {
+    setArray(lineToNumbers(rowNumber));
+  }, []);
 
   return (
     <div className="line">
@@ -29,7 +33,7 @@ const Line = ({width, rowNumber, grid, setGrid}) => {
         <div className="numbers-row">{number}</div>
       )}
       {[...Array(width)].map((cell, i) => 
-        <Cell key={rowNumber*10 + i} rowNumber={rowNumber} colNumber={i} grid={grid} setGrid={setGrid}/>
+        <Cell key={rowNumber*10 + i} rowNumber={rowNumber} colNumber={i} grid={grid} gridChange={gridChange} arrayChange={handleChange}/>
       )}
     </div>
   );
